@@ -1,11 +1,9 @@
 package com.qnadeel.springdemo.studentteacherpatform.entities.user;
 
 import com.qnadeel.springdemo.studentteacherpatform.entities.Enrollment;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -15,7 +13,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
+@AttributeOverride(name = "userId",
+        column = @Column(name = "student_id")
+)
 public class Student extends User {
 
     @Column(name = "university_name")

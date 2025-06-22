@@ -1,5 +1,6 @@
 package com.qnadeel.springdemo.studentteacherpatform.entities;
 
+import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class Enrollment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User student;
+    private Student student;
 
     @ManyToOne
     @JoinColumn(name = "course_id")

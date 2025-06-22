@@ -1,20 +1,17 @@
 package com.qnadeel.springdemo.studentteacherpatform.entities.user;
 
+import com.qnadeel.springdemo.studentteacherpatform.entities.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import javax.management.relation.Role;
 
-@Entity
-@Table(name = "USER")
 @Data
-@AllArgsConstructor
+@MappedSuperclass
+@SuperBuilder
 @NoArgsConstructor
-@Builder
-public class User {
+public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
