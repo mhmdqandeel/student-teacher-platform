@@ -2,14 +2,12 @@ package com.qnadeel.springdemo.studentteacherpatform.repositories;
 
 import com.qnadeel.springdemo.studentteacherpatform.entities.Role;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@NoArgsConstructor
 public class UserRepositoryDispatcher {
 
     private final Map<Role, UserRepository<? extends User>> userRepositories = new HashMap<>();

@@ -1,7 +1,6 @@
 package com.qnadeel.springdemo.studentteacherpatform.entities;
 
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
-import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

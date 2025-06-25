@@ -19,14 +19,14 @@ public class UserFactory {
 
         return switch (userCreationRequest.getUserRole()) {
             case STUDENT -> Student.builder()
-                    .userName(userCreationRequest.getName())
+                    .userName(userCreationRequest.getUserName())
                     .userEmail(userCreationRequest.getEmail())
                     .userRole(userCreationRequest.getUserRole())
                     .userPassword(encodedPassword)
                     .build();
 
             case TEACHER -> Teacher.builder()
-                    .userName(userCreationRequest.getName())
+                    .userName(userCreationRequest.getUserName())
                     .userEmail(userCreationRequest.getEmail())
                     .userRole(userCreationRequest.getUserRole())
                     .userPassword(encodedPassword)
