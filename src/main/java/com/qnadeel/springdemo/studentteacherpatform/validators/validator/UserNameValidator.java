@@ -1,11 +1,13 @@
 package com.qnadeel.springdemo.studentteacherpatform.validators.validator;
 
 import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourceAlreadyExistsException;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.StudentRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.TeacherRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.StudentRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.TeacherRepository;
 import com.qnadeel.springdemo.studentteacherpatform.validators.Validator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 @Component
 @AllArgsConstructor
@@ -21,7 +23,7 @@ public class UserNameValidator implements Validator {
         boolean teacherUserNameIsValid = teacherRepository.findByUserName(userName).isPresent();
 
         if (teacherUserNameIsValid || studentUserNameIsValid) {
-            throw new ResourceAlreadyExistsException(userName + " already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already exists");
         }
     }
 }

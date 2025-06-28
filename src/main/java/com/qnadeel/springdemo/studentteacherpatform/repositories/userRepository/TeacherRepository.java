@@ -1,11 +1,9 @@
-package com.qnadeel.springdemo.studentteacherpatform.repositories;
+package com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository;
 
-import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Teacher;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @Repository
 public interface TeacherRepository extends UserRepository<Teacher> {

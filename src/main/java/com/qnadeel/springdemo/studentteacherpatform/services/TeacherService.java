@@ -1,0 +1,46 @@
+package com.qnadeel.springdemo.studentteacherpatform.services;
+
+import com.qnadeel.springdemo.studentteacherpatform.dtos.request.TeacherUpdateCourse;
+import com.qnadeel.springdemo.studentteacherpatform.entities.user.Teacher;
+import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourcesNotFoundException;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.TeacherRepository;
+import com.qnadeel.springdemo.studentteacherpatform.validators.validator.EmailValidator;
+import com.qnadeel.springdemo.studentteacherpatform.validators.validator.UserNameValidator;
+import lombok.AllArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@AllArgsConstructor
+public class TeacherService {
+
+    private final TeacherRepository teacherRepository;
+
+    private final EmailValidator emailValidator;
+    private final UserNameValidator userNameValidator;
+
+    @Transactional
+    public void update(Long teacherId, TeacherUpdateCourse request, String userName) {
+        Teacher teacher = getTeacherById(teacherId);
+
+        if (!teacher.getUserName().equals(userName)) {
+            throw new AccessDeniedException("You are not authorized to update this teacher");
+        }
+
+        emailValidator.isValid(request.getUserEmail());
+        userNameValidator.isValid(request.getUserName());
+
+        teacher.setUserName(request.getUserName());
+        teacher.setUserEmail(request.getUserEmail());
+        teacher.setTeacherDepartment(request.getTeacherDepartment());
+        teacher.setTeacherAcademicTitle(request.getTeacherAcademicTitle());
+
+        teacherRepository.save(teacher);
+    }
+
+    public Teacher getTeacherById(Long teacherId) {
+        return teacherRepository.findById(teacherId)
+                .orElseThrow(() -> new ResourcesNotFoundException("Teacher not found"));
+    }
+}

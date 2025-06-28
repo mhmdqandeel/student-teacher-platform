@@ -1,6 +1,7 @@
 package com.qnadeel.springdemo.studentteacherpatform.factory;
 
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.UserCreationRequest;
+import com.qnadeel.springdemo.studentteacherpatform.entities.Role;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Teacher;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
@@ -21,14 +22,14 @@ public class UserFactory {
             case STUDENT -> Student.builder()
                     .userName(userCreationRequest.getUserName())
                     .userEmail(userCreationRequest.getEmail())
-                    .userRole(userCreationRequest.getUserRole())
+                    .userRole(Role.STUDENT)
                     .userPassword(encodedPassword)
                     .build();
 
             case TEACHER -> Teacher.builder()
                     .userName(userCreationRequest.getUserName())
                     .userEmail(userCreationRequest.getEmail())
-                    .userRole(userCreationRequest.getUserRole())
+                    .userRole(Role.TEACHER)
                     .userPassword(encodedPassword)
                     .build();
 

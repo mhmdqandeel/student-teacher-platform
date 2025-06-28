@@ -26,6 +26,7 @@ public abstract class User {
     @Column(name = "user_password")
     private String userPassword;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
     private Role userRole;
 }

@@ -6,9 +6,9 @@ import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
 import com.qnadeel.springdemo.studentteacherpatform.exceptions.PasswordNotMatch;
 import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourcesNotFoundException;
 import com.qnadeel.springdemo.studentteacherpatform.factory.UserFactory;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.StudentRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.TeacherRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.UserRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.StudentRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.TeacherRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.UserRepository;
 import com.qnadeel.springdemo.studentteacherpatform.repositories.UserRepositoryDispatcher;
 import com.qnadeel.springdemo.studentteacherpatform.validators.validator.EmailValidator;
 import com.qnadeel.springdemo.studentteacherpatform.validators.validator.UserNameValidator;
@@ -61,13 +61,17 @@ public class UserService {
     }
 
     public String login(UserLoginRequest request){
-        User user = findByUserName(request.getUserName())
-                .orElseThrow(() -> new ResourcesNotFoundException("User not found"));
+        User user = getByUserName(request.getUserName());
 
         if (!(passwordEncoder.matches(request.getPassword(), user.getUserPassword()))){
             throw new PasswordNotMatch("Password not match");
         }
 
-        return jwtService.generateToken(user.getUserName(), user.getUserEmail());
+        return jwtService.generateToken(user);
+    }
+
+    public User getByUserName(String userName) {
+        return findByUserName(userName)
+                .orElseThrow(() -> new ResourcesNotFoundException("User not found"));
     }
 }

@@ -1,9 +1,11 @@
 package com.qnadeel.springdemo.studentteacherpatform.services;
 
+import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,23 +16,25 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+
 public class JwtService {
 
     private final SecretKey secretKey;
-
 
     public JwtService() {
         String key = "2XwD8eRxMvT4n9VpLF9UyBG5cD7NlKmKqY6fO9qxMzU=";
         this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(key));
     }
 
-    public String generateToken(String username, String email) {
+    public String generateToken(User user) {
+
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", username);
+        claims.put("username", user.getUserName());
+        claims.put("role", "ROLE_"+user.getUserRole());
 
         return Jwts.builder()
                 .claims(claims)
-                .subject(email)
+                .subject(user.getUserEmail())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 60 * 100))
                 .signWith(secretKey)

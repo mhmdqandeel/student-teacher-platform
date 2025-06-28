@@ -1,5 +1,6 @@
 package com.qnadeel.springdemo.studentteacherpatform.configurations;
 
+import com.qnadeel.springdemo.studentteacherpatform.entities.Role;
 import com.qnadeel.springdemo.studentteacherpatform.filters.JwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -37,9 +38,21 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/api/v1/authentication/"
-                                ,"/api/v1/authentication/login")
+                                .requestMatchers("/api/v1/courses/create-course",
+                                        "/api/v1/teachers/{teacherId}/update")
+                                .hasRole("TEACHER")
+                                .requestMatchers("api/v1/students//{studentId}/update")
+                                .hasRole("STUDENT")
+                                .anyRequest()
                                 .permitAll()
+
+//                                .requestMatchers("/api/v1/authentication/"
+//                                ,"/api/v1/authentication/login")
+//                                .permitAll()
+//
+//                                .requestMatchers("/api/v1/courses/create-course")
+//                                .hasRole("TEACHER")
+
                 ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

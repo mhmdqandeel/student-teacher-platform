@@ -1,4 +1,4 @@
-package com.qnadeel.springdemo.studentteacherpatform.repositories;
+package com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository;
 
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
 import org.springframework.stereotype.Repository;

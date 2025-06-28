@@ -1,11 +1,13 @@
 package com.qnadeel.springdemo.studentteacherpatform.validators.validator;
 
 import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourceAlreadyExistsException;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.StudentRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.TeacherRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.StudentRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.TeacherRepository;
 import com.qnadeel.springdemo.studentteacherpatform.validators.Validator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 @Component
 @AllArgsConstructor
@@ -21,7 +23,7 @@ public class EmailValidator implements Validator {
         boolean teacherEmailIsValid = teacherRepository.findByUserEmail(email).isPresent();
 
         if (studentEmailIsValid || teacherEmailIsValid) {
-            throw new ResourceAlreadyExistsException(email + " already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
         }
     }
 }
