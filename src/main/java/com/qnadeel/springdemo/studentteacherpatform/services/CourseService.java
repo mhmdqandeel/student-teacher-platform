@@ -3,6 +3,7 @@ package com.qnadeel.springdemo.studentteacherpatform.services;
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.CourseCreationRequest;
 import com.qnadeel.springdemo.studentteacherpatform.entities.Course;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Teacher;
+import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourcesNotFoundException;
 import com.qnadeel.springdemo.studentteacherpatform.repositories.CourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,10 @@ public class CourseService {
 
         teacher.getTeacherCourses().add(course);
         courseRepository.save(course);
+    }
+
+    public Course getCourseById(Long id) {
+        return courseRepository.findByCourseId(id)
+                .orElseThrow(() -> new ResourcesNotFoundException("Course not found"));
     }
 }
