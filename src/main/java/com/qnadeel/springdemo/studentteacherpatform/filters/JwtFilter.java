@@ -1,7 +1,7 @@
 package com.qnadeel.springdemo.studentteacherpatform.filters;
 
-import com.qnadeel.springdemo.studentteacherpatform.services.CustomUserDetailsService;
 import com.qnadeel.springdemo.studentteacherpatform.services.JwtService;
+import com.qnadeel.springdemo.studentteacherpatform.services.userService.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.qnadeel.springdemo.studentteacherpatform.services;
+package com.qnadeel.springdemo.studentteacherpatform.services.userService;
 
 import com.qnadeel.springdemo.studentteacherpatform.dtos.CustomUserDetails;
 import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourcesNotFoundException;

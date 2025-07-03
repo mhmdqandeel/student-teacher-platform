@@ -1,7 +1,7 @@
 package com.qnadeel.springdemo.studentteacherpatform.controllers;
 
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.EnrollmentCreationRequest;
-import com.qnadeel.springdemo.studentteacherpatform.services.EnrollmentService;
+import com.qnadeel.springdemo.studentteacherpatform.services.enrollmentService.enrollInCourse.EnrollInCourseService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class EnrollmentController {
 
-    private final EnrollmentService enrollmentService;
+    private final EnrollInCourseService enrollInCourseService;
 
     @PostMapping("/enroll")
     public ResponseEntity<String> enrollInCourse(@RequestBody @Valid EnrollmentCreationRequest request) {
-        enrollmentService.enroll(request);
+        enrollInCourseService.enroll(request);
         return ResponseEntity.ok("Enrollment created");
     }
 }

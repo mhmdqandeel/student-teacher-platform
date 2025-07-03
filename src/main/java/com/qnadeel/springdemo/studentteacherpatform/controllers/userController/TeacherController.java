@@ -1,7 +1,8 @@
 package com.qnadeel.springdemo.studentteacherpatform.controllers.userController;
 
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.TeacherUpdateCourse;
-import com.qnadeel.springdemo.studentteacherpatform.services.TeacherService;
+import com.qnadeel.springdemo.studentteacherpatform.services.teacherService.TeacherService;
+import com.qnadeel.springdemo.studentteacherpatform.services.teacherService.updateTeacher.UpdateTeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,16 +14,15 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class TeacherController {
 
-
-    private final TeacherService teacherService;
+    private final UpdateTeacherService updateTeacherService;
 
     @PutMapping("/{teacherId}/update")
-    public ResponseEntity<String> updateStudent(@PathVariable Long teacherId,
+    public ResponseEntity<String> updateTeacher(@PathVariable Long teacherId,
                                                 @RequestBody TeacherUpdateCourse request,
                                                 @AuthenticationPrincipal UserDetails userDetails) {
 
         String userName = userDetails.getUsername();
-        teacherService.update(teacherId, request, userName);
+        updateTeacherService.update(teacherId, request, userName);
         return ResponseEntity.ok("Student updated successfully");
     }
 }

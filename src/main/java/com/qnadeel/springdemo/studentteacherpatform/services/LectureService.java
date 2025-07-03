@@ -4,6 +4,7 @@ import com.qnadeel.springdemo.studentteacherpatform.dtos.request.LectureCreation
 import com.qnadeel.springdemo.studentteacherpatform.entities.Course;
 import com.qnadeel.springdemo.studentteacherpatform.entities.Lecture;
 import com.qnadeel.springdemo.studentteacherpatform.repositories.LectureRepository;
+import com.qnadeel.springdemo.studentteacherpatform.services.courseService.CourseService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ public class LectureService {
 
     @Transactional
     public void addLecture(LectureCreationRequest request, String userNameOfTeacher) {
-
         Course course = courseService.getCourseById(request.getCourseId());
 
         if (!course.getTeacher().getUserName().equals(userNameOfTeacher)) {

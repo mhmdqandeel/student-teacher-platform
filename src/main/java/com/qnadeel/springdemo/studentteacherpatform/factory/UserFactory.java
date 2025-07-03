@@ -33,6 +33,7 @@ public class UserFactory {
                     .userPassword(encodedPassword)
                     .build();
 
+
             default -> throw new IllegalArgumentException("Unsupported role: "
                     + userCreationRequest.getUserRole());
         };
