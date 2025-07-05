@@ -2,7 +2,7 @@ package com.qnadeel.springdemo.studentteacherpatform.services.teacherService.upd
 
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.TeacherUpdateCourse;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Teacher;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.TeacherRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.TeacherRepository;
 import com.qnadeel.springdemo.studentteacherpatform.services.teacherService.TeacherService;
 import com.qnadeel.springdemo.studentteacherpatform.validators.validator.EmailValidator;
 import com.qnadeel.springdemo.studentteacherpatform.validators.validator.UserNameValidator;

@@ -20,7 +20,6 @@ public class StudentController {
     public ResponseEntity<String> updateStudent(@PathVariable Long studentId,
                                                 @RequestBody StudentUpdateRequest request,
                                                 @AuthenticationPrincipal UserDetails userDetails) {
-
         String userName = userDetails.getUsername();
         updateStudentService.update(studentId, request, userName);
         return ResponseEntity.ok("Student updated successfully");

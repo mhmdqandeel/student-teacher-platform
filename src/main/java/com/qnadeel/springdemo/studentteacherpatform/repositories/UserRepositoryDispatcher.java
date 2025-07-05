@@ -2,10 +2,6 @@ package com.qnadeel.springdemo.studentteacherpatform.repositories;
 
 import com.qnadeel.springdemo.studentteacherpatform.entities.Role;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.AdminRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.StudentRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.TeacherRepository;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -22,7 +18,7 @@ public class UserRepositoryDispatcher {
 
         userRepositories.put(Role.ADMIN, adminRepo);
         userRepositories.put(Role.STUDENT, studentRepo);
-            userRepositories.put(Role.TEACHER, teacherRepo);
+        userRepositories.put(Role.TEACHER, teacherRepo);
     }
 
     @SuppressWarnings("unchecked")

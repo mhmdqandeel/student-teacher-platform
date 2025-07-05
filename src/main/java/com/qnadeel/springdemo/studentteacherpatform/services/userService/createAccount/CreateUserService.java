@@ -3,7 +3,7 @@ package com.qnadeel.springdemo.studentteacherpatform.services.userService.create
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.UserCreationRequest;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.User;
 import com.qnadeel.springdemo.studentteacherpatform.repositories.UserRepositoryDispatcher;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.UserRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.UserRepository;
 import com.qnadeel.springdemo.studentteacherpatform.validators.validator.EmailValidator;
 import com.qnadeel.springdemo.studentteacherpatform.validators.validator.UserNameValidator;
 import lombok.AllArgsConstructor;

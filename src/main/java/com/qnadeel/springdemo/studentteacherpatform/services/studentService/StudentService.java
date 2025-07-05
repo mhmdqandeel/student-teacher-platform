@@ -2,7 +2,7 @@ package com.qnadeel.springdemo.studentteacherpatform.services.studentService;
 
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
 import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourcesNotFoundException;
-import com.qnadeel.springdemo.studentteacherpatform.repositories.userRepository.StudentRepository;
+import com.qnadeel.springdemo.studentteacherpatform.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
