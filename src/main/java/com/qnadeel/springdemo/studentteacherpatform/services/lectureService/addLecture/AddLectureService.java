@@ -1,4 +1,4 @@
-package com.qnadeel.springdemo.studentteacherpatform.services;
+package com.qnadeel.springdemo.studentteacherpatform.services.lectureService.addLecture;
 
 import com.qnadeel.springdemo.studentteacherpatform.dtos.request.LectureCreationRequest;
 import com.qnadeel.springdemo.studentteacherpatform.entities.Course;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
-public class LectureService {
+public class AddLectureService {
 
     private final LectureRepository lectureRepository;
 
