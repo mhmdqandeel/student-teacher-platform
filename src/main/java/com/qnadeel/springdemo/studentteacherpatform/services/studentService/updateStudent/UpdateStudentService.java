@@ -1,6 +1,6 @@
 package com.qnadeel.springdemo.studentteacherpatform.services.studentService.updateStudent;
 
-import com.qnadeel.springdemo.studentteacherpatform.dtos.request.StudentUpdateRequest;
+import com.qnadeel.springdemo.studentteacherpatform.dtos.request.UpdateStudentRequest;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
 import com.qnadeel.springdemo.studentteacherpatform.repositories.StudentRepository;
 import com.qnadeel.springdemo.studentteacherpatform.services.studentService.StudentService;
@@ -23,7 +23,7 @@ public class UpdateStudentService {
     private final UserNameValidator userNameValidator;
 
     @Transactional
-    public void update(Long studentId, StudentUpdateRequest request, String userName){
+    public void update(Long studentId, UpdateStudentRequest request, String userName){
         Student student = studentService.getStudentById(studentId);
 
         if (!student.getUserName().equals(userName)) {

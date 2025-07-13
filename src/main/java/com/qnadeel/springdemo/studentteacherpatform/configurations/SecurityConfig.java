@@ -30,6 +30,38 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .cors(Customizer.withDefaults())
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(authorize ->
+//                        authorize
+//
+//                                .requestMatchers("/api/v1/courses/create-course",
+//                                        "/api/v1/teachers/{teacherId}/update",
+//                                        "/api/v1/lectures/")
+//                                .hasRole("TEACHER")
+//
+//                                .requestMatchers("api/v1/students//{studentId}/update",
+//                                        "/api/v1/enrollments/enroll")
+//                                .hasRole("STUDENT")
+//
+//                                .anyRequest()
+//                                .permitAll()
+//
+////                                .requestMatchers("/api/v1/authentication/"
+////                                ,"/api/v1/authentication/login")
+////                                .permitAll()
+////
+////                                .requestMatchers("/api/v1/courses/create-course")
+////                                .hasRole("TEACHER")
+//
+//                ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -37,30 +69,34 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize ->
                         authorize
+                                // Allow Swagger UI and API docs
+                                .requestMatchers(
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html"
+                                ).permitAll()
 
-                                .requestMatchers("/api/v1/courses/create-course",
+                                // Teacher-only endpoints
+                                .requestMatchers(
+                                        "/api/v1/courses/create-course",
                                         "/api/v1/teachers/{teacherId}/update",
                                         "/api/v1/lectures/")
                                 .hasRole("TEACHER")
 
-                                .requestMatchers("api/v1/students//{studentId}/update",
+                                // Student-only endpoints
+                                .requestMatchers(
+                                        "/api/v1/students/{studentId}/update",
                                         "/api/v1/enrollments/enroll")
                                 .hasRole("STUDENT")
 
-                                .anyRequest()
-                                .permitAll()
-
-//                                .requestMatchers("/api/v1/authentication/"
-//                                ,"/api/v1/authentication/login")
-//                                .permitAll()
-//
-//                                .requestMatchers("/api/v1/courses/create-course")
-//                                .hasRole("TEACHER")
-
-                ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                                // Any other endpoints
+                                .anyRequest().permitAll()
+                )
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

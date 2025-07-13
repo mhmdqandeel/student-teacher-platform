@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TeacherUpdateCourse {
+public class UpdateTeacherRequest {
 
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String userName;
