@@ -6,6 +6,8 @@ import com.qnadeel.springdemo.studentteacherpatform.repositories.CourseRepositor
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CourseService {
@@ -15,5 +17,9 @@ public class CourseService {
     public Course getCourseById(Long id) {
         return courseRepository.findByCourseId(id)
                 .orElseThrow(() -> new ResourcesNotFoundException("Course not found"));
+    }
+
+    public List<Course> getAllCourses() {
+        return courseRepository.findAll();
     }
 }

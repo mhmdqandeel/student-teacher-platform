@@ -24,20 +24,28 @@ public class AddLectureService {
     public void addLecture(LectureCreationRequest request, String userNameOfTeacher) {
         Course course = courseService.getCourseById(request.getCourseId());
 
-        if (!course.getTeacher().getUserName().equals(userNameOfTeacher)) {
+        isAlreadyAdded(course.getTeacher().getUserName(), userNameOfTeacher);
+
+        Lecture lecture = lectureCreation(request, course);
+
+        course.getLectures().add(lecture);
+
+        lectureRepository.save(lecture);
+    }
+
+    private void isAlreadyAdded(String userNameOfTeacherFromCourse, String userNameOfTeacher) {
+        if(!userNameOfTeacherFromCourse.equals(userNameOfTeacher)) {
             throw new AccessDeniedException("You are not allowed to add this lecture");
         }
+    }
 
-        Lecture lecture = Lecture.builder()
+    private Lecture lectureCreation(LectureCreationRequest request, Course course) {
+        return Lecture.builder()
                 .lectureName(request.getLectureName())
                 .lectureContent(request.getLectureContent())
                 .publishedAt(LocalDate.now())
                 .lectureDuration(request.getLectureDuration())
                 .course(course)
                 .build();
-
-        course.getLectures().add(lecture);
-
-        lectureRepository.save(lecture);
     }
 }

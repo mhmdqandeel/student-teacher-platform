@@ -1,9 +1,11 @@
 package com.qnadeel.springdemo.studentteacherpatform.repositories;
 
+import com.qnadeel.springdemo.studentteacherpatform.entities.Course;
 import com.qnadeel.springdemo.studentteacherpatform.entities.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
+    Lecture getAllByCourse(Course course);
 }

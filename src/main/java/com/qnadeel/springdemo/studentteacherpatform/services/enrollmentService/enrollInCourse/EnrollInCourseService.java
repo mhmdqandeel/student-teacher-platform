@@ -4,6 +4,7 @@ import com.qnadeel.springdemo.studentteacherpatform.dtos.request.EnrollmentCreat
 import com.qnadeel.springdemo.studentteacherpatform.entities.Course;
 import com.qnadeel.springdemo.studentteacherpatform.entities.Enrollment;
 import com.qnadeel.springdemo.studentteacherpatform.entities.user.Student;
+import com.qnadeel.springdemo.studentteacherpatform.exceptions.ResourceAlreadyExistsException;
 import com.qnadeel.springdemo.studentteacherpatform.repositories.EnrollmentRepository;
 import com.qnadeel.springdemo.studentteacherpatform.services.courseService.CourseService;
 import com.qnadeel.springdemo.studentteacherpatform.services.studentService.StudentService;
@@ -36,10 +37,10 @@ public class EnrollInCourseService {
     private void isAlreadyEnrolled(Student student, Course course) {
         boolean alreadyEnrolled = enrollmentRepository.existsByStudentAndCourse(student, course);
         if (alreadyEnrolled) {
-                throw new RuntimeException("Student is already enrolled in this course");
+                throw new ResourceAlreadyExistsException("Student is already enrolled in this course");
         }
     }
-
+    
     private Enrollment enrollmentCreation(Student student, Course course) {
         return  Enrollment.builder()
                 .student(student)

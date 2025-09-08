@@ -22,7 +22,8 @@ public class AuthenticationController {
 
     @Operation(
             summary = "Create user account",
-            description = "Registers a new user by accepting their basic details. Returns a success message if the account is created."
+            description = "Registers a new user by accepting their basic details." +
+                    " Returns a success message if the account is created."
     )
     @PostMapping("/")
     public ResponseEntity<String> create(@RequestBody UserCreationRequest request) {
@@ -32,7 +33,8 @@ public class AuthenticationController {
 
     @Operation(
             summary = "Login user",
-            description = "Authenticates a user with their email and password. Returns a JWT token or session info upon successful login."
+            description = "Authenticates a user with their email and password. " +
+                    "Returns a JWT token or session info upon successful login."
     )
     @PostMapping("/login")
     public ResponseEntity<String> login (@RequestBody UserLoginRequest request) {
